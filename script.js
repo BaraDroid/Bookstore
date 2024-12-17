@@ -1,6 +1,7 @@
 
 function init() {
     getNames();
+    renderComments(i, j);
 }
 
 function getNames() {
@@ -11,8 +12,10 @@ function getNames() {
     <div class="price_and_status">
         <span id="priceBook${index + 1}">${books[index].price.toFixed(2)}€</span>
         <span id="statusBook${index + 1}">
-            <img src="" alt="herz leer">
-            <img src="" alt="herz voll">
+          <div class="likes">
+            <img class="hearth_empty" id="emptyHearth" onclick="giveLike()" src="./img/heart_empty.png" alt="herz leer">
+            <img class="hearth_full" src="./img/heart_full.png" alt="herz voll">
+          </div>
         </span>
     </div>
         <table class="book_info">
@@ -31,14 +34,34 @@ function getNames() {
         </table>
     <div class="divider"></div>
     <div class="comment_section">
-        <span>Kommentare:</span>
-        <div  id="commentsBook${index + 1}"></div>
+        <h4>Kommentare:</h4>
+        <div class="comments_text">
+            <span id="commentsBook${index + 1}">Noch keine Kommentare.</span>
+        </div>
         <div class="your_comment">
-            <div id="commentsBook${index + 1}"></div>
             <input class="input_field" id="commentContent" type="text" placeholder="the best book ever since!">
             <button id="sendComment">Abschicken</button>
         </div>
     </div>
 </div>`
+    }
+}
+
+function giveLike() {
+    document.getElementById("emptyHearth").classList.add("d-none");
+}
+
+
+let i = 0;
+let j = 0; 
+
+function renderComments(i, j) {
+    for (let i = 0; i < books.length; i++) {
+        for (let j = 0; j < books[i].comments.length; j++) {
+            let commentRef = document.getElementById(`commentsBook${i + 1}`);
+            commentRef.innerHTML = "";
+            commentRef.innerHTML += `<p>${books[i].comments[j]}</p>`;     
+        }
+        
     }
 }

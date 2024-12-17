@@ -63,6 +63,30 @@ h1 {padding: 16px;}
     font-size: 24px;
 }
 
+.hearth_full {
+    width:32px; 
+    position: absolute;
+    top: -13px;
+    left: 8px;   
+    display: none;
+}
+
+.hearth_empty {
+    width:32px; 
+    position: absolute;
+    top: -13px;
+    left: 8px;  
+}
+
+.hearth_full:hover {cursor:pointer;}
+.hearth_empty:hover {cursor:pointer;}
+
+.likes {
+    position: relative;
+}
+
+.d-none {display: none;}
+
 table { padding: 8px;}
 
 .comment_section {
@@ -70,6 +94,18 @@ table { padding: 8px;}
     flex-direction: column;
     padding: 16px;
 }
+
+.comments_text {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: calc(100% - 17px);
+    padding: 16px;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    scrollbar-color: red;
+}
+/* overflow: scroll macht scrollbalken rechts und unten, auto nur rechts */
 
 button {
     background-color: rgb(250, 30, 30);
