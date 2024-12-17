@@ -107,6 +107,10 @@ table { padding: 8px;}
     scrollbar-color: red;
 }
 
+.input_field {
+    color: black;
+}
+
 button {
     background-color: rgb(250, 30, 30);
     color: rgb(7 36 46);

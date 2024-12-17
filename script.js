@@ -1,10 +1,13 @@
 
+let i = 0;
+let j = 0; 
+
 function init() {
-    getNames();
+    render();
     renderComments(i, j);
 }
 
-function getNames() {
+function render() {
     for (let index = 0; index < books.length; index++) {
     document.getElementById("allBooksTemplates").innerHTML += `<div class="dialog">
     <h1 id="nameBook${index + 1}">${books[index].name}</h1>
@@ -41,21 +44,35 @@ function getNames() {
         </div>
         <div class="your_comment">
             <input class="input_field" id="commentContent" type="text" placeholder="the best book ever since!">
-            <button id="sendComment">Abschicken</button>
+            <button id="sendComment" onclick="addComment()">Abschicken</button>
         </div>
     </div>
 </div>`
+renderStatus(index)
+    };
+}
+
+function renderStatus(index) {
+    if (books[index].liked == true) {
+        document.getElementById(`fullHearthBook${index + 1}`).classList.remove("d_none");
     }
 }
 
 function giveLike(index) {
     document.getElementById(`emptyHearthBook${index + 1}`).classList.add("d_none");
     document.getElementById(`fullHearthBook${index + 1}`).classList.remove("d_none");
+    let likesAmount = books[index].likes.valueOf();
+    likesAmount++
+    document.getElementById(`likesAmountBook${index + 1}`).innerHTML = likesAmount;
 }
 
-
-let i = 0;
-let j = 0; 
+// function takeLikeAway(index) {
+//     document.getElementById(`emptyHearthBook${index + 1}`).classList.remove("d_none");
+//     document.getElementById(`fullHearthBook${index + 1}`).classList.add("d_none");
+//     let likesAmount = books[index].likes.valueOf();
+//     likesAmount--
+//     document.getElementById(`likesAmountBook${index + 1}`).innerHTML = likesAmount;
+// }
 
 function renderComments(i, j) {
     for (let i = 0; i < books.length; i++) {
@@ -64,3 +81,14 @@ function renderComments(i, j) {
         }  
     }
 }
+
+function addComment(index) {
+    let inputValue = document.getElementById("commentContent");
+    let newComment;
+    newComment = inputValue.value
+    let commentArray = books[index].comments;
+    commentArray.push(newComment);
+    Object.assign(commentArray);
+    renderComments(i, j);
+}
+
