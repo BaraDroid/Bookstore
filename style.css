@@ -57,35 +57,36 @@ h1 {padding: 16px;}
 .price_and_status {
     display: flex;
     justify-content: space-evenly;
+    gap: 56px;
     align-items: center;
     padding: 16px;
-    color: rgb(250 30 30);
-    font-size: 24px;
+}
+
+.books_price {color: rgb(250 30 30); font-size: 24px; font-weight: bold;}
+
+.likes {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    position: relative;
 }
 
 .hearth_full {
-    width:32px; 
+    width:28px; 
     position: absolute;
-    top: -13px;
-    left: 8px;   
-    display: none;
+    left: 50px;
 }
 
 .hearth_empty {
     width:32px; 
     position: absolute;
-    top: -13px;
-    left: 8px;  
+    left: 48px;
 }
 
 .hearth_full:hover {cursor:pointer;}
 .hearth_empty:hover {cursor:pointer;}
 
-.likes {
-    position: relative;
-}
-
-.d-none {display: none;}
+.d_none {display: none;}
 
 table { padding: 8px;}
 
@@ -105,7 +106,6 @@ table { padding: 8px;}
     overflow-x: hidden;
     scrollbar-color: red;
 }
-/* overflow: scroll macht scrollbalken rechts und unten, auto nur rechts */
 
 button {
     background-color: rgb(250, 30, 30);
