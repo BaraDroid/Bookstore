@@ -4,13 +4,14 @@ let j = 0;
 
 function init() {
     render();
+    
     renderComments(i, j);
 }
 
 function render() {
     for (let index = 0; index < books.length; index++) {
     document.getElementById("allBooksTemplates").innerHTML += `<div class="dialog">
-    <div class="book_header" id="bgImage" onload="loadImage(${index})">
+    <div class="book_header" id="bgImageBook${index + 1}" onload="loadImage(${index})">
        <h1 id="nameBook${index + 1}">${books[index].name}</h1>
     </div>
     <div class="divider"></div>
@@ -20,7 +21,7 @@ function render() {
           <div class="likes">
             <div class="number_of_likes" id="likesAmountBook${index + 1}">${books[index].likes}</div>
             <img class="hearth_empty" id="emptyHearthBook${index + 1}" onclick="giveLike(${index})" src="./img/heart_empty.png" alt="herz leer">
-            <img class="hearth_full d_none" id="fullHearthBook${index + 1}" src="./img/heart_full.png" alt="herz voll"></img>
+            <img class="hearth_full d_none" id="fullHearthBook${index + 1}" onclick="takeLikeAway(${index})" src="./img/heart_full.png" alt="herz voll"></img>
           </div>
         
     </div>
@@ -50,7 +51,8 @@ function render() {
         </div>
     </div>
 </div>`
-renderStatus(index)
+renderStatus(index);
+loadImage(index);
     };
 }
 
@@ -63,18 +65,18 @@ function renderStatus(index) {
 function giveLike(index) {
     document.getElementById(`emptyHearthBook${index + 1}`).classList.add("d_none");
     document.getElementById(`fullHearthBook${index + 1}`).classList.remove("d_none");
-    let likesAmount = books[index].likes.valueOf();
+    let likesAmount = document.getElementById(`likesAmountBook${index + 1}`).innerHTML;
     likesAmount++
     document.getElementById(`likesAmountBook${index + 1}`).innerHTML = likesAmount;
 }
 
-// function takeLikeAway(index) {
-//     document.getElementById(`emptyHearthBook${index + 1}`).classList.remove("d_none");
-//     document.getElementById(`fullHearthBook${index + 1}`).classList.add("d_none");
-//     let likesAmount = books[index].likes.valueOf();
-//     likesAmount--
-//     document.getElementById(`likesAmountBook${index + 1}`).innerHTML = likesAmount;
-// }
+function takeLikeAway(index) {
+    document.getElementById(`emptyHearthBook${index + 1}`).classList.remove("d_none");
+    document.getElementById(`fullHearthBook${index + 1}`).classList.add("d_none");
+    let likesAmount = document.getElementById(`likesAmountBook${index + 1}`).innerHTML;
+    likesAmount--;
+    document.getElementById(`likesAmountBook${index + 1}`).innerHTML = likesAmount;
+}
 
 function renderComments(i, j) {
     for (let i = 0; i < books.length; i++) {
@@ -94,15 +96,14 @@ else {
     let newComment = {"name": "new user", "comment": inputValue.value};
     let commentArray = books[index].comments;
     commentArray.push(newComment);
-    Object.assign(commentArray);
     inputValue.value = "";
-    commentArray = [];
+    document.getElementById(`commentsBook${index + 1}`).innerHTML = "";
     renderComments(i, j);
 }
 }
 
 function loadImage(index) {
-    document.getElementById("bgImage").style.backgroundImage=`url(./img/book_${index + 1}.jpg)`;
+    document.getElementById(`bgImageBook${index + 1}`).style.backgroundImage=`url(./img/book_${index + 1}.jpg)`;
 }
 
 //das war inline style bei bgImage style="{background-image: url(./img/book_${index + 1}.jpg);}"
