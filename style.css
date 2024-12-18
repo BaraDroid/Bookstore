@@ -40,6 +40,7 @@ footer {
 .dialog {
     background-color: rgb(10 57 73);
     border-radius: 15px;
+    border: 2px rgb(10 57 73);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,8 +55,18 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-position: center center;
     background-size: cover;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
     padding: 0;
+}
+
+.informations {padding-bottom: 16px;}
+
+.book_info{
+    display:flex;
+    gap: 16px;
 }
 
 .divider {
@@ -66,11 +77,12 @@ footer {
 
 h1 {
     padding: 16px; 
-    color: red;
+    color: rgb(250 30 30);
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: rgb(8, 29, 36);
     font-weight: 900;
     text-shadow: 0px 1px, 1px 0px, 1px 1px;
+    font-size: 36px;
 }
 
 h4 {padding: 8px;}
@@ -127,24 +139,93 @@ h4 {padding: 8px;}
 .comments_text {
     display: flex;
     flex-direction: column;
-    height: 50px;
+    height: 150px;
     width: calc(100% - 17px);
     padding: 16px;
     overflow-y: scroll; 
     overflow-x: hidden;
-    scrollbar-color: red;
 }
 
-.your_comment {padding: 8px;}
+.your_comment {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
 
 .input_field {
     color: black;
+    border-radius: 5px;
+    border: none;
+    height: 22px;
 }
 
 button {
     background-color: rgb(250, 30, 30);
     color: rgb(7 36 46);
     padding: 8px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    height: 37px;
+    box-shadow: 2px 2px 4px rgba(234, 35, 35, 0.2);
 }
 
 .input_field {padding: 8px;}
+
+@media (max-width:1180px) {
+    .dialog {width: 35dvw;}
+}
+
+@media (max-width: 850px) {
+    header {padding: 0 24px;}
+    footer {padding: 16px 24px;}
+    .main_section {padding: 16px 24px;}
+    .dialog {width: 25dvw;}
+}
+
+@media (max-width: 853px) {
+    header {padding: 0 16px;}
+    footer {padding: 16px 16px;}
+    .main_section {padding: 16px 16px;}
+    .dialog {width: 42dvw;}
+}
+
+@media (max-width:795px) {
+    .dialog {width: 38dvw;}
+    .comments_text {width: calc(100% - 24px);}
+}
+
+@media (max-width: 748px) {
+    .comments_text {width: calc(100% - 30px);}
+}
+
+@media (max-width: 714px) {
+    .comments_text {width: calc(100% - 35px);}
+}
+
+@media (max-width: 690px) {
+    .comments_text {width: calc(100% - 40px);}
+}
+
+@media (max-width: 664px) {
+    .dialog {width: 80dvw;}
+}
+
+@media (max-width: 470px) {
+    .logo {font-size: 24px;}
+    footer {font-size: 24px;}
+}
+
+@media (max-width: 390px) {
+    .logo img {height: 99px;}
+}
+
+@media (max-width: 350px) {
+    .input_field {width: 100px;}
+    .dialog {width: 70dvw;}
+    .logo {font-size: 18px;}
+    footer {font-size: 18px}
+    .books_price {margin-left: 24px;}
+}
