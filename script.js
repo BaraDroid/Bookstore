@@ -10,7 +10,7 @@ function init() {
 function render() {
     for (let index = 0; index < books.length; index++) {
     document.getElementById("allBooksTemplates").innerHTML += `<div class="dialog">
-    <div class="book_header" style="{background-image: url(./img/book_${index + 1}.jpg);}">
+    <div class="book_header" id="bgImage" onload="loadImage(${index})">
        <h1 id="nameBook${index + 1}">${books[index].name}</h1>
     </div>
     <div class="divider"></div>
@@ -45,7 +45,7 @@ function render() {
             <span id="commentsBook${index + 1}"></span>
         </div>
         <div class="your_comment">
-            <input class="input_field" id="commentContent" type="text" placeholder="dein Kommentar">
+            <input class="input_field" id="commentContent${index+1}" type="text" placeholder="dein Kommentar">
             <button id="sendComment" onclick="addComment(${index})">Abschicken</button>
         </div>
     </div>
@@ -85,11 +85,24 @@ function renderComments(i, j) {
 }
 
 function addComment(index) {
-    let inputValue = document.getElementById("commentContent");
-    let newComment = inputValue.value;
+    let inputValue = document.getElementById(`commentContent${index + 1}`);
+    
+if (inputValue.value == "") {
+    return alert("Fülle das Kommentarfeld aus!");
+}
+else { 
+    let newComment = {"name": "new user", "comment": inputValue.value};
     let commentArray = books[index].comments;
     commentArray.push(newComment);
     Object.assign(commentArray);
+    inputValue.value = "";
+    commentArray = [];
     renderComments(i, j);
 }
+}
 
+function loadImage(index) {
+    document.getElementById("bgImage").style.backgroundImage=`url(./img/book_${index + 1}.jpg)`;
+}
+
+//das war inline style bei bgImage style="{background-image: url(./img/book_${index + 1}.jpg);}"
