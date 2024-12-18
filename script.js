@@ -10,7 +10,9 @@ function init() {
 function render() {
     for (let index = 0; index < books.length; index++) {
     document.getElementById("allBooksTemplates").innerHTML += `<div class="dialog">
-    <h1 id="nameBook${index + 1}">${books[index].name}</h1>
+    <div class="book_header" style="{background-image: url(./img/book_${index + 1}.jpg);}">
+       <h1 id="nameBook${index + 1}">${books[index].name}</h1>
+    </div>
     <div class="divider"></div>
     <div class="price_and_status">
         <div class="books_price" id="priceBook${index + 1}">${books[index].price.toFixed(2)}€</div>
@@ -43,8 +45,8 @@ function render() {
             <span id="commentsBook${index + 1}"></span>
         </div>
         <div class="your_comment">
-            <input class="input_field" id="commentContent" type="text" placeholder="the best book ever since!">
-            <button id="sendComment" onclick="addComment()">Abschicken</button>
+            <input class="input_field" id="commentContent" type="text" placeholder="dein Kommentar">
+            <button id="sendComment" onclick="addComment(${index})">Abschicken</button>
         </div>
     </div>
 </div>`
@@ -84,8 +86,7 @@ function renderComments(i, j) {
 
 function addComment(index) {
     let inputValue = document.getElementById("commentContent");
-    let newComment;
-    newComment = inputValue.value
+    let newComment = inputValue.value;
     let commentArray = books[index].comments;
     commentArray.push(newComment);
     Object.assign(commentArray);
